@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 7.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-128x128.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-128x128.png">
@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"loganliu66.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="背景随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。">
+  <meta name="description" content="背景 随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VALL-E">
 <meta property="og:url" content="https://loganliu66.github.io/VALL-E/index.html">
 <meta property="og:site_name" content="Logan Liu&#39;s Blog">
-<meta property="og:description" content="背景随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。">
+<meta property="og:description" content="背景 随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。">
 <meta property="og:locale">
 <meta property="og:image" content="https://loganliu66.github.io/images/Untitled.png">
 <meta property="og:image" content="https://loganliu66.github.io/images/Untitled_1.png">
@@ -196,43 +196,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。</p>
+        <h2 id="背景">背景</h2>
+<p>随着LLM的发展，TTS也从传统的phoneme → mel-spectrogram → waveform路径转向phoneme → discrete code → LM → waveform。 VALL-E便是这个背景下的产物。</p>
 <span id="more"></span>
-
 <p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.02111">https://arxiv.org/abs/2301.02111</a></p>
 <p>结果展示页面：<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/project/vall-e/">https://www.microsoft.com/en-us/research/project/vall-e/</a></p>
 <p>代码（非官方）：<a target="_blank" rel="noopener" href="https://github.com/enhuiz/vall-e">https://github.com/enhuiz/vall-e</a></p>
-<h3 id="Audio-Codec-Encoder"><a href="#Audio-Codec-Encoder" class="headerlink" title="Audio Codec Encoder"></a>Audio Codec Encoder</h3><p>要得到discrete code就得使用<a target="_blank" rel="noopener" href="https://www.notion.so/PolyVoice-Language-Models-for-Speech-to-Speech-Translation-ca1708e3119746b3bd7f17c14fceff49?pvs=21">离散化的工具</a>，以获得离散化的acoustic unit用于LM训练。在VALL-E中用到的是<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.13438">EnCodec</a>，而EnCodec以<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.03312">SoundStream</a>为基础。</p>
+<h3 id="Audio-Codec-Encoder">Audio Codec Encoder</h3>
+<p>要得到discrete code就得使用<a target="_blank" rel="noopener" href="https://www.notion.so/PolyVoice-Language-Models-for-Speech-to-Speech-Translation-ca1708e3119746b3bd7f17c14fceff49?pvs=21">离散化的工具</a>，以获得离散化的acoustic unit用于LM训练。在VALL-E中用到的是<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.13438">EnCodec</a>，而EnCodec以<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.03312">SoundStream</a>为基础。</p>
 <p>首先对音频编解码的工作流程进行介绍，如下图所示：</p>
 <img src="../images/Untitled.png" alt="Untitled" style="zoom: 50%;" />
-
 <ul>
-<li>假设音频采样率24k, 每帧包含320个采样点，则每秒有S &#x3D; 24000 &#x2F; 320 &#x3D; 75帧；</li>
+<li>假设音频采样率24k, 每帧包含320个采样点，则每秒有S = 24000 / 320 = 75帧；</li>
 <li>如果codebook中只包含8个向量，那么以75*3bps的速率就可以传输离散化后的语音表示（传递的是codebook的下标）；</li>
 <li>但是这个时候用8个向量来表示所有语音的话，解码后的语音会非常失真，所以codebook中的向量往往会多很多。当需要更高传输速率的时候，比如在6kbps的时候，可以用80bit来表示codebook中的一个下标，这时codebook中的向量的数量可以达到2^80个，这是不可接受的。所以就有了<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.03312">SoundStream</a>的提出。</li>
 </ul>
-<h3 id="SoundStream"><a href="#SoundStream" class="headerlink" title="SoundStream"></a>SoundStream</h3><p>SoundStream提出Residual Vector Quantitation (RVQ)来平衡codebook大小和比特利用率，其结构如下：</p>
+<h3 id="SoundStream">SoundStream</h3>
+<p>SoundStream提出Residual Vector Quantitation (RVQ)来平衡codebook大小和比特利用率，其结构如下：</p>
 <img src="../images/Untitled_1.png" alt="Untitled" style="zoom:50%;" />
-
-<p>SoundStream使用多个quantitation block对应多个codebook，它们之间有残差连接，重要性不同；若使用8个codebook，则每个codebook可利用10 bits, 大小为2^10&#x3D;1024, 可接受。</p>
-<h3 id="EnCodec"><a href="#EnCodec" class="headerlink" title="EnCodec"></a>EnCodec</h3><p>VALL-E中用到的离散模块是基于SoundStream的改进版EnCodec，其模型结构图如下：</p>
+<p>SoundStream使用多个quantitation block对应多个codebook，它们之间有残差连接，重要性不同；若使用8个codebook，则每个codebook可利用10 bits, 大小为2^10=1024, 可接受。</p>
+<h3 id="EnCodec">EnCodec</h3>
+<p>VALL-E中用到的离散模块是基于SoundStream的改进版EnCodec，其模型结构图如下：</p>
 <img src="../images/Untitled_2.png" alt="Untitled" style="zoom:50%;" />
-
 <p>相比SoundStream有以下改进：</p>
 <ul>
 <li>加入了之前忽略的Waveform重建loss；</li>
 <li>引入了一个小的语言模型，该语言模型根据t时刻的RVQ向量，预测t+1时刻的RVQ向量，用于提前解码下一刻的语音；</li>
 </ul>
-<h2 id="VALL-E模型结构"><a href="#VALL-E模型结构" class="headerlink" title="VALL-E模型结构"></a>VALL-E模型结构</h2><p>模型整体框架如图：</p>
+<h2 id="VALL-E模型结构">VALL-E模型结构</h2>
+<p>模型整体框架如图：</p>
 <img src="../images/Untitled_3.png" alt="Untitled" style="zoom:50%;" />
-
 <ul>
 <li>预训练阶段：Encodec提取的离散tokens + ASR得到的text对应的phoneme tokens用LM的方式进行预训练。</li>
-<li>微调阶段：分别使用文本 &#x2F; 音频prompt，分别控制语音合成的内容与风格。</li>
+<li>微调阶段：分别使用文本 / 音频prompt，分别控制语音合成的内容与风格。</li>
 </ul>
 <p>LM是由多个Transformer Decoder层组成。每个decoder对应RVQ中的一层，对于对重要的第一层RVQ，VALL-E使用一个<strong>自回归</strong>的结构进行解码预测；随后，后续每层RVQ的tokens基于上一层的RVQ tokens，使用非自回归的transformer encoder进行解码预测(加快运行)。</p>
 <img src="../images/Untitled_4.png" alt="Untitled 4" style="zoom: 50%;" />
-
 <p>最终，将acoustic tokens输回Encodec，生成语音。</p>
 
     </div>

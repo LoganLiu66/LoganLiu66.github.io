@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 7.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-128x128.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-128x128.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214107561.png">
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214127526.png">
 <meta property="article:published_time" content="2023-11-28T08:47:50.000Z">
-<meta property="article:modified_time" content="2023-11-29T12:34:06.561Z">
+<meta property="article:modified_time" content="2023-11-29T14:09:24.961Z">
 <meta property="article:author" content="Logan Liu">
 <meta property="article:tag" content="ASR">
 <meta name="twitter:card" content="summary">
@@ -205,16 +205,16 @@
 <h3 id="雅可比矩阵和行列式">雅可比矩阵和行列式</h3>
 <p>如果一个函数 $\mathbf{f}$把一个n维的输入映射为m维的输出， $\mathbf{f}: \mathbb{R}^n\mapsto\mathbb{R}^m$，那么这个函数的一阶（first-order）偏导数（partial derivative）叫做雅可比矩阵（Jacobian Matrix），表示为 $\mathbf{J}$。 $\mathbf{J}$的第i行、第j列的计算公式为 $\mathbf{J_{ij}=\frac{\partial{f_i}}{\partial{x_j}}}$</p>
 <p>$$<br>
-\mathbf{J}=\left[\begin{array}{ccc}\frac{\partial f_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \ \vdots &amp; \ddots &amp; \vdots \ \frac{\partial f_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}\end{array}\right]<br>
+\mathbf{J}=\left[\begin{array}{ccc}\frac{\partial f_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \\ \vdots &amp; \ddots &amp; \vdots \\ \frac{\partial f_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}\end{array}\right]<br>
 $$</p>
 <p>雅可比行列式只存在于方阵（square matrices）中，是一个由矩阵中所有元素参与计算得到的实数；行列式的绝对值表示在该数据点处对空间扩展和收缩的程度（how much expands or contracts space），也可以理解为行列式中的行或列向量所构成的超平行多面体的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/AndyJee/p/3491487.html">有向面积或有向体积</a>。对于二阶行列式：</p>
 <p>$$<br>
-\left[\begin{array}{cc} a_1 &amp; a_2  \b_1 &amp;b_2\end{array} \right]=a_1b_2-a_2b_1<br>
+\left[\begin{array}{cc} a_1 &amp; a_2  \\ b_1 &amp;b_2\end{array} \right]=a_1b_2-a_2b_1<br>
 $$</p>
 <p>例如向量 $a={1,0}, b={0,1}$所构成的有向面积为1<em>1-0</em>0=1。而对于雅可比矩阵，对应函数 $\mathbf{f}$在点 $\mathbf{x}$的微分，矩阵的每一项代表各个维度下面积或体积的伸缩因子。</p>
 <p>将上面二阶行列式的计算扩展到n阶有如下公式：</p>
 <p>$$<br>
-\operatorname{det} M=\operatorname{det}\left[\begin{array}{cccc}a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1 n} \a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2 n} \\vdots &amp; \vdots &amp; &amp; \vdots \a_{n 1} &amp; a_{n 2} &amp; \ldots &amp; a_{n n}\end{array}\right]=\sum_{j_1 j 2 \ldots j_n}(-1)^{\tau\left(j_1 j_2 \ldots j_n\right)} a_{1 j_1} a_{2 j_2} \ldots a_{n j_n}<br>
+\operatorname{det} M=\operatorname{det}\left[\begin{array}{cccc}a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1 n} \\ a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2 n} \\ \vdots &amp; \vdots &amp; &amp; \vdots \\ a_{n 1} &amp; a_{n 2} &amp; \ldots &amp; a_{n n}\end{array}\right]=\sum_{j_1 j 2 \ldots j_n}(-1)^{\tau\left(j_1 j_2 \ldots j_n\right)} a_{1 j_1} a_{2 j_2} \ldots a_{n j_n}<br>
 $$</p>
 <p>其中 $j_1j_2…j_n$是 $1,2,…,n$的一个排列， $\sum\limits_{j_1 j_2 \ldots j_n}$是遍历所有 $1,2,…,n$排列 ${j_1 j_2 \ldots j_n}$求和；方阵 $M$的行列式有如下性质：</p>
 <ul>
@@ -230,7 +230,7 @@ $$</p>
 <p>根据定义， $\int\pi(z)dz$是无限（infinite）多个宽度无穷小（infinitesimal）的矩形面积之和，在位置 $z$处的矩形的高度就是其密度函数 $\pi(z)$。由 $z=f^{-1}(x)$可得 $\frac{\Delta z}{\Delta x}=(f^{-1}(x))‘$,  $\Delta z=(f^{-1}(x))’ \Delta x$, 所以此处的 $(f^{-1}(x))'$ 可以任务是变量 $x$和 $z$在两个不同的坐标系中对应位置处的矩形的面积的比值。</p>
 <p>多维变量的变换与一维变量的变换比较相似：</p>
 <p>$$<br>
-\begin{aligned}\mathbf{z} &amp; \sim \pi(\mathbf{z}), \mathbf{x}=f(\mathbf{z}), \mathbf{z}=f^{-1}(\mathbf{x}) \p(\mathbf{x}) &amp; =\pi(\mathbf{z})\left|\operatorname{det} \frac{d \mathbf{z}}{d \mathbf{x}}\right|=\pi\left(f^{-1}(\mathbf{x})\right)\left|\operatorname{det} \frac{d f^{-1}}{d \mathbf{x}}\right|\end{aligned}<br>
+\begin{aligned}\mathbf{z} &amp; \sim \pi(\mathbf{z}), \mathbf{x}=f(\mathbf{z}), \mathbf{z}=f^{-1}(\mathbf{x}) \\ p(\mathbf{x}) &amp; =\pi(\mathbf{z})\left|\operatorname{det} \frac{d \mathbf{z}}{d \mathbf{x}}\right|=\pi\left(f^{-1}(\mathbf{x})\right)\left|\operatorname{det} \frac{d f^{-1}}{d \mathbf{x}}\right|\end{aligned}<br>
 $$</p>
 <p>其中， $\operatorname{det} \frac{d f^{-1}}{d \mathbf{x}}$是函数 $f$的雅可比行列式。</p>
 <h3 id="实例">实例</h3>
@@ -241,19 +241,19 @@ $$</p>
 </blockquote>
 <p>密度估计（density estimation）在很多机器学习问题上都有应用，但一个好的密度估计又很难做到。例如，由于深度学习中需要进行反向传播，所以我们希望后验概率分布（posterior， $p(z|x)$）尽可能的简单，以方便求导。这也是为什么隐变量生成模型（latent variable generative model），如VAE，中通常使用高斯分布，尽管现实世界中分布往往比高斯分布更复杂。</p>
 <p>Normalizing Flow模型可以很好的进行分布估计（distribution approximation），normalizing flow可以通过一系列的可逆变换函数将一个简单的分布变成复杂的分布。利用变量变化定理，可以反复的替换其中一部分变量，直到得到一个新的概率分布。</p>
-<p><img src="../images/image-20231128213643107.png" alt="image-20231128213643107"></p>
+<div>
+<img src="../images/image-20231128213643107.png" width="100%"/>
+<center>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</center>
+</div>
+<center><figure src="../images/image-20231128213643107.png" width="100%" title="图1.Normalizing Flow模型将一个简单的分布 $p_0(\mathbf z_0)$逐步替换成一个复杂的分布 $p_K(\mathbf z_K)$"></center>
 <p>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</p>
 <p>根据图1我们有</p>
 <p>$$<br>
-\mathbf z_{i-1}\sim p_{i-1}(\mathbf z_{i-1}) \<br>
-\mathbf z_{i} = f_{i}(\mathbf z_{i-1}), thus \\mathbf z_{i-1} = f^{-1}<em>{i}(\mathbf z</em>{i})\<br>
+\begin{aligned}\mathbf z_{i-1}&amp;\sim p_{i-1}(\mathbf z_{i-1}) \\ \mathbf z_{i} &amp;= f_{i}(\mathbf z_{i-1}), thus \\ \mathbf z_{i-1} &amp;= f^{-1}_{i}(\mathbf z_{i}) \end{aligned}<br>
 $$</p>
 <p>根据多维变量的变换定律有：</p>
 <p>$$<br>
-p_i(\mathbf z_i)=p_{i-1}(\mathbf z_{i-1})\left|\operatorname{det}\frac{d \mathbf z_{i-1}}{d \mathbf z_{i}}\right|<br>
-\=p_{i-1}(\mathbf z_{i-1})\left|\left(\operatorname{det}\frac{d \mathbf z_{i}}{d \mathbf z_{i-1}}\right)^{-1}\right|<br>
-\=p_{i-1}(\mathbf z_{i-1})\left|\left(\operatorname{det}\frac{d f_{i}(\mathbf z_{i-1})}{d \mathbf z_{i-1}}\right)^{-1}\right|;反函数定理<br>
-\=p_{i-1}(\mathbf z_{i-1})\left|\operatorname{det}\frac{d f_{i}(\mathbf z_{i-1})}{d \mathbf z_{i-1}}\right|^{-1};雅可比行列式的反函数性质<br>
+\begin{aligned} p_i(\mathbf z_i)&amp;=p_{i-1}(\mathbf z_{i-1})\left|\operatorname{det}\frac{d \mathbf z_{i-1}}{d \mathbf z_{i}}\right| \\ &amp;=p_{i-1}(\mathbf z_{i-1})\left|\left(\operatorname{det}\frac{d \mathbf z_{i}}{d \mathbf z_{i-1}}\right)^{-1}\right| \\ &amp;=p_{i-1}(\mathbf z_{i-1})\left|\left(\operatorname{det}\frac{d f_{i}(\mathbf z_{i-1})}{d \mathbf z_{i-1}}\right)^{-1}\right|;反函数定理 \\ &amp;=p_{i-1}(\mathbf z_{i-1})\left|\operatorname{det}\frac{d f_{i}(\mathbf z_{i-1})}{d \mathbf z_{i-1}}\right|^{-1};雅可比行列式的反函数性质 \end{aligned}<br>
 $$</p>
 <p>所以有：</p>
 <p>$$<br>
@@ -261,7 +261,7 @@ log(p_i(\mathbf z_i))=log(p_{i-1}(\mathbf z_{i-1})) - log\left|\operatorname{det
 $$</p>
 <p>给定这样一连串的概率密度函数，我们知道每两个连续的变量之间的关系，从而可以知道初始分布 $z_0$与输出 $x$之间的转换公式：</p>
 <p>$$<br>
-\begin{aligned}\mathbf{x}=\mathbf{z}<em>K &amp; =f_K \circ f</em>{K-1} \circ \cdots \circ f_1\left(\mathbf{z}<em>0\right) \\log p(\mathbf{x})=\log \pi_K\left(\mathbf{z}<em>K\right) &amp; =\log \pi</em>{K-1}\left(\mathbf{z}</em>{K-1}\right)-\log \left|\operatorname{det} \frac{d f_K}{d \mathbf{z}<em>{K-1}}\right| \&amp; =\log \pi</em>{K-2}\left(\mathbf{z}<em>{K-2}\right)-\log \left|\operatorname{det} \frac{d f</em>{K-1}}{d \mathbf{z}<em>{K-2}}\right|-\log \left|\operatorname{det} \frac{d f_K}{d \mathbf{z}</em>{K-1}}\right| \&amp; =\ldots \&amp; =\log \pi_0\left(\mathbf{z}<em>0\right)-\sum</em>{i=1}^K \log \left|\operatorname{det} \frac{d f_i}{d \mathbf{z}_{i-1}}\right|\end{aligned}<br>
+\begin{aligned}\mathbf{x}=\mathbf{z}_K &amp; =f_K \circ f_{K-1} \circ \cdots \circ f_1\left(\mathbf{z}_0\right) \\ \log p(\mathbf{x})=\log \pi_K\left(\mathbf{z}_K\right) &amp; =\log \pi_{K-1}\left(\mathbf{z}_{K-1}\right)-\log \left|\operatorname{det} \frac{d f_K}{d \mathbf{z}_{K-1}}\right| \\ &amp; =\log \pi_{K-2}\left(\mathbf{z}_{K-2}\right)-\log \left|\operatorname{det} \frac{d f_{K-1}}{d \mathbf{z}_{K-2}}\right|-\log \left|\operatorname{det} \frac{d f_K}{d \mathbf{z}_{K-1}}\right| \\ &amp; =\ldots \\ &amp; =\log \pi_0\left(\mathbf{z}_0\right)-\sum_{i=1}^K \log \left|\operatorname{det} \frac{d f_i}{d \mathbf{z}_{i-1}}\right|\end{aligned}<br>
 $$</p>
 <p>随机变量经过的路径 $z_i=f_i(z_{i-1})$就是flow，连续分布 $\pi_i$形成的完整链路就是normalizing flow。上述公式成立，需要变换函数 $f_i$ 满足如下条件：</p>
 <ul>
@@ -277,47 +277,53 @@ $$</p>
 <li>第 $d+1$至 $D$维，执行仿射变换（“scale-and-shift”），放缩(scale)和移动(shift)的参数都是以前 $d$ 维作为输入的函数；</li>
 </ul>
 <p>$$<br>
-\mathbf y_{1:d}=\mathbf x_{1:d}\<br>
-\mathbf y_{d+1:D}=\mathbf x_{d+1:D}\odot \operatorname{exp}(s(\mathbf x_{1:d})) + t(\mathbf x_{1:d})<br>
+\begin{array}{cc} \mathbf y_{1:d}=\mathbf x_{1:d} \\ <br>
+\mathbf y_{d+1:D}=\mathbf x_{d+1:D}\odot \operatorname{exp}(s(\mathbf x_{1:d})) + t(\mathbf x_{1:d}) \end{array}<br>
 $$</p>
 <p>其中 $s(\cdot)$和 $t(\cdot)$是scale和translation函数，这两个函数将 $\mathbb{R^d}$映射为 $\mathbb{R^{D-d}}$, $\odot$是逐元素相乘。下面让我们验证这种变换是否满足上述两个条件；</p>
 <p><strong>条件1:</strong> 可逆</p>
 <p>可逆比较容易证明，如下：</p>
 <p>$$<br>
-\left{\begin{array} { l l } { \mathbf { y } _ { 1 : d } } &amp; { = \mathbf { x } _ { 1 : d } } \{ \mathbf { y } _ { d + 1 : D } } &amp; { = \mathbf { x } _ { d + 1 : D } \odot \operatorname { e x p } ( s ( \mathbf { x } _ { 1 : d } ) ) + t ( \mathbf { x } _ { 1 : d } ) }\end{array} \Leftrightarrow \left{\begin{array}{ll}\mathbf{x}<em>{1: d} &amp; =\mathbf{y}</em>{1: d} \\mathbf{x}<em>{d+1: D} &amp; =\left(\mathbf{y}</em>{d+1: D}-t\left(\mathbf{y}<em>{1: d}\right)\right) \odot \exp \left(-s\left(\mathbf{y}</em>{1: d}\right)\right)\end{array}\right.\right.<br>
+\begin{cases}\begin{array}{ll}  \mathbf { y } _ { 1 : d }  = \mathbf { x } _ { 1 : d }  \\  \mathbf { y } _ { d + 1 : D }  = \mathbf { x } _ { d + 1 : D } \odot \operatorname { e x p } ( s ( \mathbf { x } _ { 1 : d } ) ) + t ( \mathbf { x } _ { 1 : d } ) \end{array} \end{cases} \Leftrightarrow \begin{cases}\begin{array}{ll}  \mathbf { x } _ { 1 : d }    = \mathbf { y } _ { 1 : d }  \\  \mathbf { x } _ { d + 1 : D }   = (\mathbf { y } _ { d + 1 : D }  - t ( \mathbf { y } _ { 1 : d } )) \odot \operatorname { e x p } ( -s ( \mathbf { y } _ { 1 : d } ) )\end{array} \end{cases}<br>
 $$</p>
 <p><strong>条件2:</strong> 雅可比行列式比较容易计算</p>
 <p>上述变换函数的雅可比行列式如下所示，是一个下三角矩阵：</p>
 <p>$$<br>
-\mathbf{J} = \left[\begin{array}{cc}\mathbb{I} &amp; \mathbb{0}<em>{d\times(D-d)} \<br>
-\frac{\partial \mathbf{y}</em>{d+1: D}}{\partial \mathbf{x}<em>{1: d}} &amp; \operatorname{diag}(\operatorname{exp}(s(\mathbf x</em>{1:d})))\end{array}\right]<br>
+\mathbf{J} = \left[\begin{array}{cc}\mathbb{I} &amp; \mathbb{0}_{d\times(D-d)} \\ <br>
+\frac{\partial \mathbf{y}_{d+1: D}}{\partial \mathbf{x}_{1: d}} &amp; \operatorname{diag}(\operatorname{exp}(s(\mathbf x_{1:d})))\end{array}\right]<br>
 $$</p>
 <p>下三角矩阵的行列式为（三角阵的行列式等于对角线元素之积）：</p>
 <p>$$<br>
-\operatorname{det}(\mathbf{J})=\prod_{j=1}^{D-d} \exp \left(s\left(\mathbf{x}<em>{1: d}\right)\right)<em>j=\exp \left(\sum</em>{j=1}^{D-d} s\left(\mathbf{x}</em>{1: d}\right)_j\right)<br>
+\operatorname{det}(\mathbf{J})=\prod_{j=1}^{D-d} \exp \left(s\left(\mathbf{x}_{1: d}\right)\right)_j=\exp \left(\sum_{j=1}^{D-d} s\left(\mathbf{x}_{1: d}\right)_j\right)<br>
 $$</p>
 <p>以上证明了RealNVP满足可逆和雅可比行列式容易计算两个条件。此外，由条件1的证明可知计算 $f^{-1}$不需要计算 $s$和 $t$的逆函数，雅可比行列式的计算也不需要计算 $s$和 $t$的行列式，所以 $s$和 $t$可以是任意复杂度，比如 $s$和 $t$均可以是一个神经网络。</p>
 <p>在一个仿射耦合层（affine coupling layer）中，某些纬度是保持不变的，这会导致生成数据中总有一片区域看起来像固定的图样。为了保证所有维度都有被替换的机会，会不断的交换复制模块（copy）与仿射模块（affine）的顺序，这样最终的生成图像就不会包含完全copy自初始图像的部分。</p>
 <h3 id="NICE">NICE</h3>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1410.8516">NICE</a>（Non-linear Independent Component Estimation）是<a target="_blank" rel="noopener" href="https://lilianweng.github.io/posts/2018-10-13-flow-models/#realnvp">RealNVP</a>的先导工作，与RealNVP不同的是NICE是不包含缩放（scale）项的仿射耦合层，也称加性（additive）耦合层。</p>
 <p>$$<br>
-\left{\begin{array} { l l } { \mathbf { y } _ { 1 : d } } &amp; { = \mathbf { x } _ { 1 : d } } \{ \mathbf { y } _ { d + 1 : D } } &amp; { = \mathbf { x } _ { d + 1 : D } + m ( \mathbf { x } _ { 1 : d } ) }\end{array} \Leftrightarrow \left{\begin{array}{ll}\mathbf{x}<em>{1: d} &amp; =\mathbf{y}</em>{1: d} \\mathbf{x}<em>{d+1: D} &amp; =\mathbf{y}</em>{d+1: D}-m\left(\mathbf{y}_{1: d}\right)\end{array}\right.\right.<br>
+\begin{cases}\begin{array} { l l } { \mathbf { y } _ { 1 : d } } { = \mathbf { x } _ { 1 : d } } \\ { \mathbf { y } _ { d + 1 : D } } { = \mathbf { x } _ { d + 1 : D } + m ( \mathbf { x } _ { 1 : d } ) }\end{array} \end{cases} \Leftrightarrow  \begin{cases} \begin{array}{ll}\mathbf{x}_{1: d} =\mathbf{y}_{1: d} \\ \mathbf{x}_{d+1: D} =\mathbf{y}_{d+1: D}-m\left(\mathbf{y}_{1: d}\right)\end{array} \end{cases}<br>
 $$</p>
 <h3 id="Glow">Glow</h3>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.03039">Glow</a>模型扩展之前的可逆生成模型，如NICE、RealNVP，这些模型在像素维度上进行划分，执行仿射对偶变换。而Glow在通道（channel）维度上进行copy和affine，在每次耦合变换中按顺序选择一个进行copy，其他的通道进行affine。为了让每个通道都有被替换的机会，引入W矩阵，帮我们决定按什么样的顺序进行copy和affine，这种方法叫做1x1 convolution。1x1 convolution决定在每次仿射变换前对图片哪些区域进行像素对调，而copy和affine的顺序保持不变，这样和对调copy和affine的效果是一致的。</p>
-<p><img src="../images/image-20231128213808501.png" alt="image-20231128213808501"></p>
-<p>图2. 1x1 convolution</p>
+<div>
+<img src="../images/image-20231128213808501.png" width="30%"/>
+<center>图2. 1x1 convolution</center>
+</div>
 <p>Glow中的一个flow包含如下子步骤：</p>
-<p><img src="../images/image-20231128214052260.png" alt="image-20231128214052260"></p>
-<p>图3. One step of flow in the Glow model. (Image source: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.03039">Kingma and Dhariwal, 2018</a>)</p>
+<div>
+<img src="../images/image-20231128214052260.png" width="30%"/>
+<center>图3. One step of flow in the Glow model. (Image source: [Kingma and Dhariwal, 2018](https://arxiv.org/abs/1807.03039))</center>
+</div>
 <p><strong>步骤1: Activation Normalization（actnorm）</strong></p>
 <p>类似于batch normalization，通过scale和bias参数进行仿射变换（和仿射耦合层不同的是不包含copy部分，而是对所有维度进行仿射变换），这些参数是可训练的。</p>
 <p><strong>步骤2: invertible 1x1 conv</strong></p>
-<p><img src="../images/image-20231128214107561.png" alt="image-20231128214107561"></p>
-<p>图4. invertible 1x1 convolution</p>
+<div>
+<img src="../images/image-20231128214107561.png" width="30%"/>
+<center>图4. invertible 1x1 convolution</center>
+</div>
 <p>在每两个Glow flow之间，应用1x1卷积（卷积核的大小等于输入输出的channel数）可以产生channel顺序的任意排列，这样每个通道都有被替换的机会。</p>
 <p>对于形状为 $h\times w \times c$ 的输入tensor $\mathbf{h}$，应用形状为  $c \times c$ 的可学习的1x1卷积权重矩阵 $\mathbf{W}$，得到的输出tensor为 $h\times w \times c$，用函数表示为 $f=\operatorname{conv2d}(\mathbf{h};\mathbf{W})$ 。为了应用变量变换规则，我们需要计算行列式 $|\operatorname{det}df/d\mathbf{h}|$的值，而通过推导可知可以直接通过计算矩阵 $\mathbf{W}$ 的行列式得到 $|\operatorname{det}df/d\mathbf{h}|$的值。计算过程如下：</p>
-<p>1x1卷积的输入输出可以看做是 $h\times w$ 的矩阵， $\mathbf{x}<em>{ij}\in \mathbb{R}^c(i=1,\ldots,h,j=1,\ldots,w)$是矩阵中的一个数据点，和权重矩阵 $\mathbf{W}$ 相乘后得到对应的输出  $\mathbf{y}</em>{ij}\in \mathbb{R}^c(i=1,\ldots,h,j=1,\ldots,w)$,每个数据点的导数 $d\mathbf{x}<em>{ij}\mathbf{W}/d\mathbf{x}</em>{ij}=\mathbf{W}$,  $h\times w$ 个数据点的行列式为：<br>
+<p>1x1卷积的输入输出可以看做是 $h\times w$ 的矩阵， $\mathbf{x}_{ij} \in \mathbb{R}^c(i=1,\ldots,h,j=1,\ldots,w)$是矩阵中的一个数据点，和权重矩阵 $\mathbf{W}$ 相乘后得到对应的输出  $\mathbf{y}_{ij}\in \mathbb{R}^c(i=1,\ldots,h,j=1,\ldots,w)$,每个数据点的导数 $d\mathbf{x}_{ij}\mathbf{W}/d\mathbf{x}_{ij}=\mathbf{W}$,  $h\times w$ 个数据点的行列式为：<br>
 $$<br>
 \operatorname{log}\left|\operatorname{det}\frac{\partial{\operatorname{conv2d}(\mathbf{h};\mathbf{W})}}{\partial\mathbf{h}} \right|=\operatorname{log}\left|\operatorname{det}\mathbf{W}^{h\times w}\right|={h \cdot w} \cdot \operatorname{log}\left|\operatorname{det}\mathbf{W}\right|<br>
 $$</p>
@@ -325,8 +331,10 @@ $$</p>
 <p><strong>步骤3: 仿射对偶变换</strong></p>
 <p>这里的仿射对偶变换和RealNVP中的是一致的。</p>
 <p>所以Glow的各个子步骤对应的逆函数和行列式计算如下所示：</p>
-<p><img src="../images/image-20231128214127526.png" alt="image-20231128214127526"></p>
-<p>图5. 各个子步骤对应的逆函数和行列式计算</p>
+<div>
+<img src="../images/image-20231128214127526.png" width="100%"/>
+<center>图5. 各个子步骤对应的逆函数和行列式计算</center>
+</div>
 <h2 id="疑问">疑问</h2>
 <ul>
 <li>为什么flow模型要求变换函数是可逆的？</li>
