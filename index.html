@@ -243,9 +243,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Flow模型</h1>
+          <h2 id="摘要">摘要</h2>
 <p>GAN和<a target="_blank" rel="noopener" href="https://www.notion.so/GAN-VAE-Flow-Diffusion-AR-e4ed1e1c92f14dd18f48ddb2de560205?pvs=21">VAE</a>都没有显式地（explicitly）对真实数据的概率密度函数（probability density function，PDF） $p(\mathbf{x}),\mathbf{x}\in\mathcal{D}$ 进行建模，而是采用对抗训练或优化上界（Evidence Lower Bound，ELBO）的方式避开概率计算，因为 $p(\mathbf{x})$太难算了！以带隐变量的生成模型 $p(\mathbf{x})=\int p(\mathbf{x}\mid\mathbf{z})p(\mathbf{z})d\mathbf{z}$ 为例，因为不可能遍历所有的潜在编码 $\mathbf{z}$，所以 $p(\mathbf{x})$的计算是非常困难的（intractable）。</p>
-<p>Flow-based生成模型通过<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1505.05770">normalizing flows</a>解决了这个问题，normalizing flows是一个非常强大的概率密度函数计算工具。计算出 $p(\mathbf{x})$之后我们可以有效地完成下游任务，如：采样出不存在于训练集但真实存在的样本点（data generation）、计算某个时间可能发生的概率（density estimation）等等。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/FlowModel/#more" rel="contents">
