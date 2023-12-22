@@ -155,6 +155,64 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://loganliu66.github.io/GlowTTS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/favicon-128x128.png">
+      <meta itemprop="name" content="Logan Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Logan Liu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/GlowTTS/" class="post-title-link" itemprop="url">Glow-TTS</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="摘要">摘要</h2>
+<p>之前的非自回归模型在训练时往往需要额外的对齐知识（如fastspeech先蒸馏出一个duration predictor，fastspeech2使用MFA工具），而在本文中使用<strong>Flow和动态规划</strong>搜索最可能的文本与语音表示之间的**单调对齐(monotonic alignment)**路径。最终的结果表明这种强制单调硬对齐(enforcing hard)可以使TTS更加鲁棒，而Flow的使用可以使合成的语音更快、多样(dicerse)以及可控(controllable)。此外，在合成质量差不多的情况下，Glow-TTS的生成速度比自回归的Tacotron2快了一个数量级。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/GlowTTS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://loganliu66.github.io/FlowModel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -451,7 +509,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

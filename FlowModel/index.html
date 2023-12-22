@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214107561.png">
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214127526.png">
 <meta property="article:published_time" content="2023-11-28T08:47:50.000Z">
-<meta property="article:modified_time" content="2023-12-03T06:01:07.406Z">
+<meta property="article:modified_time" content="2023-12-04T08:08:50.592Z">
 <meta property="article:author" content="Logan Liu">
 <meta property="article:tag" content="ASR">
 <meta name="twitter:card" content="summary">
@@ -211,7 +211,7 @@ $$</p>
 <p>$$<br>
 \left[\begin{array}{cc} a_1 &amp; a_2  \\ b_1 &amp;b_2\end{array} \right]=a_1b_2-a_2b_1<br>
 $$</p>
-<p>例如向量 $a={1,0}, b={0,1}$所构成的有向面积为1<em>1-0</em>0=1。而对于雅可比矩阵，对应函数 $\mathbf{f}$在点 $\mathbf{x}$的微分，矩阵的每一项代表各个维度下面积或体积的伸缩因子。</p>
+<p>例如向量 $a=[1,0], b=[0,1]$所构成的有向面积为1*1-0*0=1。而对于雅可比矩阵，对应函数 $\mathbf{f}$在点 $\mathbf{x}$的微分，矩阵的每一项代表各个维度下面积或体积的伸缩因子。</p>
 <p>将上面二阶行列式的计算扩展到n阶有如下公式：</p>
 <p>$$<br>
 \operatorname{det} M=\operatorname{det}\left[\begin{array}{cccc}a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1 n} \\ a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2 n} \\ \vdots &amp; \vdots &amp; &amp; \vdots \\ a_{n 1} &amp; a_{n 2} &amp; \ldots &amp; a_{n n}\end{array}\right]=\sum_{j_1 j 2 \ldots j_n}(-1)^{\tau\left(j_1 j_2 \ldots j_n\right)} a_{1 j_1} a_{2 j_2} \ldots a_{n j_n}<br>
@@ -241,11 +241,10 @@ $$</p>
 </blockquote>
 <p>密度估计（density estimation）在很多机器学习问题上都有应用，但一个好的密度估计又很难做到。例如，由于深度学习中需要进行反向传播，所以我们希望后验概率分布（posterior， $p(z|x)$）尽可能的简单，以方便求导。这也是为什么隐变量生成模型（latent variable generative model），如VAE，中通常使用高斯分布，尽管现实世界中分布往往比高斯分布更复杂。</p>
 <p>Normalizing Flow模型可以很好的进行分布估计（distribution approximation），normalizing flow可以通过一系列的可逆变换函数将一个简单的分布变成复杂的分布。利用变量变化定理，可以反复的替换其中一部分变量，直到得到一个新的概率分布。</p>
-<div>
+<div style="text-align: center;">
 <img src="../images/image-20231128213643107.png" width="100%"/>
 <center>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</center>
 </div>
-<center><figure src="../images/image-20231128213643107.png" width="100%" title="图1.Normalizing Flow模型将一个简单的分布 $p_0(\mathbf z_0)$逐步替换成一个复杂的分布 $p_K(\mathbf z_K)$"></center>
 <p>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</p>
 <p>根据图1我们有</p>
 <p>$$<br>
@@ -305,19 +304,19 @@ $$</p>
 $$</p>
 <h3 id="Glow">Glow</h3>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1807.03039">Glow</a>模型扩展之前的可逆生成模型，如NICE、RealNVP，这些模型在像素维度上进行划分，执行仿射对偶变换。而Glow在通道（channel）维度上进行copy和affine，在每次耦合变换中按顺序选择一个进行copy，其他的通道进行affine。为了让每个通道都有被替换的机会，引入W矩阵，帮我们决定按什么样的顺序进行copy和affine，这种方法叫做1x1 convolution。1x1 convolution决定在每次仿射变换前对图片哪些区域进行像素对调，而copy和affine的顺序保持不变，这样和对调copy和affine的效果是一致的。</p>
-<div>
+<div  style="text-align: center;">
 <img src="../images/image-20231128213808501.png" width="30%"/>
 <center>图2. 1x1 convolution</center>
 </div>
 <p>Glow中的一个flow包含如下子步骤：</p>
-<div>
+<div  style="text-align: center;">
 <img src="../images/image-20231128214052260.png" width="30%"/>
 <center>图3. One step of flow in the Glow model. (Image source: [Kingma and Dhariwal, 2018](https://arxiv.org/abs/1807.03039))</center>
 </div>
 <p><strong>步骤1: Activation Normalization（actnorm）</strong></p>
 <p>类似于batch normalization，通过scale和bias参数进行仿射变换（和仿射耦合层不同的是不包含copy部分，而是对所有维度进行仿射变换），这些参数是可训练的。</p>
 <p><strong>步骤2: invertible 1x1 conv</strong></p>
-<div>
+<div  style="text-align: center;">
 <img src="../images/image-20231128214107561.png" width="30%"/>
 <center>图4. invertible 1x1 convolution</center>
 </div>
@@ -331,7 +330,7 @@ $$</p>
 <p><strong>步骤3: 仿射对偶变换</strong></p>
 <p>这里的仿射对偶变换和RealNVP中的是一致的。</p>
 <p>所以Glow的各个子步骤对应的逆函数和行列式计算如下所示：</p>
-<div>
+<div  style="text-align: center;">
 <img src="../images/image-20231128214127526.png" width="100%"/>
 <center>图5. 各个子步骤对应的逆函数和行列式计算</center>
 </div>
@@ -369,7 +368,10 @@ $$</p>
     <a href="/VALL-E/" rel="prev" title="VALL-E">
       <i class="fa fa-chevron-left"></i> VALL-E
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/GlowTTS/" rel="next" title="Glow-TTS">
+      Glow-TTS <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -443,7 +445,7 @@ $$</p>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
