@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214107561.png">
 <meta property="og:image" content="https://loganliu66.github.io/images/image-20231128214127526.png">
 <meta property="article:published_time" content="2023-11-28T08:47:50.000Z">
-<meta property="article:modified_time" content="2023-12-22T02:09:42.525Z">
+<meta property="article:modified_time" content="2023-12-22T02:24:25.543Z">
 <meta property="article:author" content="Logan Liu">
 <meta property="article:tag" content="ASR">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@ $$</p>
 <p>密度估计（density estimation）在很多机器学习问题上都有应用，但一个好的密度估计又很难做到。例如，由于深度学习中需要进行反向传播，所以我们希望后验概率分布（posterior， $p(z|x)$）尽可能的简单，以方便求导。这也是为什么隐变量生成模型（latent variable generative model），如VAE，中通常使用高斯分布，尽管现实世界中分布往往比高斯分布更复杂。</p>
 <p>Normalizing Flow模型可以很好的进行分布估计（distribution approximation），normalizing flow可以通过一系列的可逆变换函数将一个简单的分布变成复杂的分布。利用变量变化定理，可以反复的替换其中一部分变量，直到得到一个新的概率分布。</p>
 <div style="text-align: center;">
-<img src="../images/image-20231128213643107.png" width="100%"/>
+<img src="../images/image-20231128213643107.png" width="70%"/>
 <center>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</center>
 </div>
 <p>图1. Normalizing Flow模型变换示意图，将一个简单的分布 $p_0(z_0)$逐步替换成一个复杂的分布 $p_K(z_K)$</p>
@@ -331,7 +331,7 @@ $$</p>
 <p>这里的仿射对偶变换和RealNVP中的是一致的。</p>
 <p>所以Glow的各个子步骤对应的逆函数和行列式计算如下所示：</p>
 <div  style="text-align: center;">
-<img src="../images/image-20231128214127526.png" width="100%"/>
+<img src="../images/image-20231128214127526.png" width="70%"/>
 <center>图5. 各个子步骤对应的逆函数和行列式计算</center>
 </div>
 <h2 id="疑问">疑问</h2>
@@ -447,7 +447,7 @@ $$</p>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -481,7 +481,7 @@ $$</p>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class=""></i>
   </span>
